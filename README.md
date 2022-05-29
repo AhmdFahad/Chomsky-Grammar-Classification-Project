@@ -1,8 +1,14 @@
 # Computer-theory
-Chomsky Classification of Grammars
+Chomsky Classification of Poduction Rule
+
+
 ![img.png](img.png)
 
 input:
-capital letter is Vn 
-small letter is Vt
+the left side of production rule
+and the right side of production rule
+
+
+!capital letter is Vn 
+!small letter is Vt
 
