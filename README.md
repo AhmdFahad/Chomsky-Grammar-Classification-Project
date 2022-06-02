@@ -12,3 +12,6 @@ and the right side of production rule
 !capital letter is Vn 
 !small letter is Vt
 
+
+S is start point
+
