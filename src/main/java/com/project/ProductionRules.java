@@ -129,8 +129,11 @@ public class ProductionRules {
         if (flag.equals(ChomskyGrammarType.typeTwo)) {
             for (ProductionRules p :
                     arr) {
-                if (p.getLeftSideOfProductionRules().equals("S") && p.getRightSideOfProductionRules().equals("`"))
-                    flag = ChomskyGrammarType.typeOne;
+                if (!p.getLeftSideOfProductionRules().equals("S") || !p.getRightSideOfProductionRules().equals("`")) {
+                    continue;
+                }
+                flag = ChomskyGrammarType.typeOne;
+                break;
             }
         }
 
@@ -151,8 +154,11 @@ public class ProductionRules {
         if (flag.equals(ChomskyGrammarType.typeTwo)) {
             for (ProductionRules p :
                     arr) {
-                if (p.getLeftSideOfProductionRules().equals(start) && p.getRightSideOfProductionRules().equals("`"))
-                    flag = ChomskyGrammarType.typeOne;
+                if (!p.getLeftSideOfProductionRules().equals(start) || !p.getRightSideOfProductionRules().equals("`")) {
+                    continue;
+                }
+                flag = ChomskyGrammarType.typeOne;
+                break;
             }
         }
 
@@ -164,7 +170,7 @@ public class ProductionRules {
         ArrayList<ProductionRules> arr = new ArrayList<>();
         if (set.charAt(0) != '{' || set.charAt(set.length() - 1) != '}') System.out.println("Wrong input");
         String leftSide = "";
-        String rightSide = "";
+        StringBuilder rightSide = new StringBuilder();
 
         boolean leftDone = false, rightDone = false;
 
@@ -172,24 +178,24 @@ public class ProductionRules {
             char c = set.charAt(i);
             if (c == '-') leftDone = true;
             if (c == ',' || c == '}') rightDone = true;
-            if (leftDone != true) {
+            if (!leftDone) {
                 leftSide += c;
-            } else if (rightDone != true && c !='-' && c !='>' && c!='|') {
-                rightSide += c;
+            } else if (!rightDone && c !='-' && c !='>' && c!='|') {
+                rightSide.append(c);
             }
 
 
             if (c == '|') {
 
-                arr.add(new ProductionRules(leftSide, rightSide));
-                rightSide = "";
+                arr.add(new ProductionRules(leftSide, rightSide.toString()));
+                rightSide = new StringBuilder();
                 rightDone = false;
             }
 
             if (leftDone && rightDone) {
-                arr.add(new ProductionRules(leftSide, rightSide));
+                arr.add(new ProductionRules(leftSide, rightSide.toString()));
                 leftSide = "";
-                rightSide = "";
+                rightSide = new StringBuilder();
                 leftDone = false;
                 rightDone = false;
             }
