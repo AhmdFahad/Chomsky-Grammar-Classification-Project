@@ -62,3 +62,4 @@ build/
 ### Mac OS ###
 .DS_Store
 >>>>>>> Setup project
+.idea
